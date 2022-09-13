@@ -2,8 +2,6 @@ package de.prototype.service;
 
 import de.prototype.model.Rental;
 import io.smallrye.mutiny.Uni;
-
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
