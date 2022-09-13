@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 
@@ -36,8 +37,8 @@ public class RentalController {
     }
 
     @POST
-    public Uni<Response> createRental(Rental rental) {
-        return rentalService.createRental(rental);
+    public Uni<Response> createRental(Rental rental, UriInfo uriInfo) {
+        return rentalService.createRental(rental, uriInfo);
     }
 
     @PUT

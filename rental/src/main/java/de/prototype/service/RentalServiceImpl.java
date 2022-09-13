@@ -5,7 +5,10 @@ import io.smallrye.mutiny.Uni;
 import org.bson.types.ObjectId;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 @ApplicationScoped
@@ -22,8 +25,12 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<Response> createRental(Rental rental) {
-        return rental.<Rental>persist().map(r -> Response.ok(r).build());
+    public Uni<Response> createRental(Rental rental, @Context UriInfo uriInfo) {
+        return rental.<Rental>persist().map(r -> {
+            UriBuilder builder = uriInfo.getAbsolutePathBuilder().path(Long.toString(r.getRentalId()));
+            return Response.created(builder.build()).build();
+                });
+
     }
 
     @Override
