@@ -15,8 +15,8 @@ import lombok.Setter;
 @MongoEntity(collection="rentals")
 public class Rental extends ReactivePanacheMongoEntity {
 
-    public int rentalId;
-    public String name;
-    public String description;
+    private int rentalId;
+    private String name;
+    private String description;
 
 }

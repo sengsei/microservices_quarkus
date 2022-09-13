@@ -17,8 +17,8 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<Rental> getRentalById(String id) {
-        return Rental.findById(new ObjectId(id));
+    public Uni<Response> getRentalById(String id) {
+        return Rental.findById(new ObjectId(id)).map(r -> Response.ok(r).build());
     }
 
     @Override
@@ -27,15 +27,21 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<Rental> updateRental(String id, Rental rental) {
+    public Uni<Response> updateRental(String id, Rental rental) {
         Uni<Rental> updatedRental = Rental.findById(new ObjectId(id));
         return updatedRental.onItem().transform(
                 e -> {
+                    e.setRentalId(rental.getRentalId());
                     e.setDescription(rental.getDescription());
                     e.setName(rental.getName());
                     return e;
                 }
-        ).call(e -> e.persistOrUpdate());
+        ).call(e -> e.persistOrUpdate()).replaceWith(Response.ok().build());
+    }
+
+    @Override
+    public Uni<Response> deleteRentalById(String id) {
+        return Rental.deleteById(new ObjectId(id)).replaceWith(Response.noContent().build());
     }
 
 

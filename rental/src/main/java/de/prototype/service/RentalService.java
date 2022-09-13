@@ -9,9 +9,10 @@ import java.util.List;
 public interface RentalService {
 
     Uni<List<Rental>> getAllRentals();
-    Uni<Rental> getRentalById(String id);
+    Uni<Response> getRentalById(String id);
     Uni<Response> createRental(Rental rental);
-    Uni<Rental> updateRental(String id, Rental rental);
+    Uni<Response> updateRental(String id, Rental rental);
+    Uni<Response> deleteRentalById(String id);
 
 
 }
