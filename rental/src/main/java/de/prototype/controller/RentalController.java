@@ -29,6 +29,12 @@ public class RentalController {
         return rentalService.getAllRentals();
     }
 
+    @GET
+    @Path("/{id}")
+    public Uni<Rental> getRentalById(@PathParam("id") String id){
+        return rentalService.getRentalById(id);
+    }
+
     @POST
     public Uni<Response> createRental(Rental rental) {
         return rentalService.createRental(rental);

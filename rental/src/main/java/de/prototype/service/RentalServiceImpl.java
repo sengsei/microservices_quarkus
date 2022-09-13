@@ -17,6 +17,11 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
+    public Uni<Rental> getRentalById(String id) {
+        return Rental.findById(new ObjectId(id));
+    }
+
+    @Override
     public Uni<Response> createRental(Rental rental) {
         return rental.<Rental>persist().map(r -> Response.ok(r).build());
     }
