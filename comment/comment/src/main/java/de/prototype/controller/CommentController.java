@@ -32,4 +32,11 @@ public class CommentController {
     public Uni<Response> createComment(Comment comment){
         return commentService.createComment(comment);
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Uni<Response>deleteCommentsByRentalId(@PathParam("id") int rentalId){
+        return commentService.deleteAllCommentsByRentalId(rentalId);
+    }
+
 }

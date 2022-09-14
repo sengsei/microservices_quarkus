@@ -10,4 +10,5 @@ public interface CommentService {
 
     Uni<List<Comment>> getAllCommentsByRentalId(int rentalId);
     Uni<Response> createComment(Comment comment);
+    Uni<Response>deleteAllCommentsByRentalId(int rentalId);
 }

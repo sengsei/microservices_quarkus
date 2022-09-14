@@ -19,4 +19,9 @@ public class CommentServiceImpl implements CommentService {
     public Uni<Response> createComment(Comment comment) {
         return comment.<Comment>persist().map(c -> Response.ok(c).build());
     }
+
+    @Override
+    public Uni<Response> deleteAllCommentsByRentalId(int rentalId) {
+        return Comment.delete("rentalId", rentalId).replaceWith(Response.noContent().build());
+    }
 }
