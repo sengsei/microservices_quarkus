@@ -47,8 +47,8 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<Response> deleteRentalById(String id) {
-        return Rental.deleteById(new ObjectId(id)).replaceWith(Response.noContent().build());
+    public Uni<Response> deleteRentalByRentalId(int rentalId) {
+        return Rental.delete("rentalId", rentalId).replaceWith(Response.noContent().build());
     }
 
 

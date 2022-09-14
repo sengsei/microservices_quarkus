@@ -49,8 +49,8 @@ public class RentalController {
 
     @DELETE
     @Path("/{id}")
-    public Uni<Response>deleteRentalById(@PathParam("id") String id){
-        return rentalService.deleteRentalById(id);
+    public Uni<Response>deleteRentalByRentalId(@PathParam("id") int rentalId){
+        return rentalService.deleteRentalByRentalId(rentalId);
     }
 
 }
