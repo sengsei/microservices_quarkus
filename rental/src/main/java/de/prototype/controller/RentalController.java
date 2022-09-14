@@ -32,8 +32,8 @@ public class RentalController {
 
     @GET
     @Path("/{id}")
-    public Uni<Response> getRentalById(@PathParam("id") String id){
-        return rentalService.getRentalById(id);
+    public Uni<List<Rental>> getRentalById(@PathParam("id") int rentalId){
+        return rentalService.getRentalById(rentalId);
     }
 
     @POST

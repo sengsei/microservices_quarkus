@@ -9,7 +9,7 @@ import java.util.List;
 public interface RentalService {
 
     Uni<List<Rental>> getAllRentals();
-    Uni<Response> getRentalById(String id);
+    Uni<List<Rental>> getRentalById(int rentalId);
     Uni<Response> createRental(Rental rental, UriInfo uriInfo);
     Uni<Response> updateRental(String id, Rental rental);
     Uni<Response> deleteRentalById(String id);

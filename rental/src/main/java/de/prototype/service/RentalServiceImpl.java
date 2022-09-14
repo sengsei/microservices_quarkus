@@ -20,8 +20,8 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<Response> getRentalById(String id) {
-        return Rental.findById(new ObjectId(id)).map(r -> Response.ok(r).build());
+    public Uni<List<Rental>> getRentalById(int rentalId) {
+        return Rental.list("rentalId", rentalId);
     }
 
     @Override
