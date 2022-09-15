@@ -17,5 +17,5 @@ public interface RentalProxy {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    Uni<List<Rental>> getRentalByRentalId(@PathParam("id") int rentalId);
+    Uni<Rental> getRentalByRentalId(@PathParam("id") int rentalId);
 }

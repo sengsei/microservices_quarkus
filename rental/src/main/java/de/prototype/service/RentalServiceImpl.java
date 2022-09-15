@@ -20,8 +20,8 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<List<Rental>> getRentalById(int rentalId) {
-        return Rental.list("rentalId", rentalId);
+    public Uni<Rental> getRentalById(int rentalId) {
+        return Rental.find("rentalId", rentalId).firstResult();
     }
 
     @Override

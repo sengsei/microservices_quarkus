@@ -32,7 +32,7 @@ public class RentalController {
 
     @GET
     @Path("/{id}")
-    public Uni<List<Rental>> getRentalById(@PathParam("id") int rentalId){
+    public Uni<Rental> getRentalById(@PathParam("id") int rentalId){
         return rentalService.getRentalById(rentalId);
     }
 
