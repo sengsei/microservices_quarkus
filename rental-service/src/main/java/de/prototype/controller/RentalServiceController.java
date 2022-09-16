@@ -7,20 +7,22 @@ import de.prototype.model.Rental;
 import de.prototype.model.RentalAndComment;
 import de.prototype.service.RentalServiceIntegration;
 import io.smallrye.mutiny.Uni;
+import org.jboss.resteasy.reactive.ResponseStatus;
 
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
+
 
 
 @Path("/api/rentals-and-comments")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
 public class RentalServiceController {
 
@@ -40,12 +42,18 @@ public class RentalServiceController {
         return integration.getCommentsByRentalId(rentalId);
     }
 
-
     @GET
     @Path("/{rentalId}")
     public RentalAndComment getRental(@PathParam("rentalId") int rentalId) {
         return integration.getRentalAndCommentByRentalId(rentalId);
     }
+
+    @POST
+    public RentalAndComment createRentalAndComment(RentalAndComment rentalAndComment, UriInfo uriInfo){
+        return integration.createRentalAndComment(rentalAndComment, uriInfo);
+    }
+
+
 
 
 

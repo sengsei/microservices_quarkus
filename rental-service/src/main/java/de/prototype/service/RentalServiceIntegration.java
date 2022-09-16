@@ -10,6 +10,7 @@ import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 @ApplicationScoped
@@ -35,9 +36,23 @@ public class RentalServiceIntegration {
         Uni<List<Comment>> comments = commentProxy.getCommentsByRentalId(rentalId);
         RentalAndComment rentalAndComment = new RentalAndComment();
         rentalAndComment.setRentalId(rentalId);
-        rentalAndComment.setName(rental.onItem().transform(e -> e.getName()).await().indefinitely());
-        rentalAndComment.setDescription(rental.onItem().transform(e -> e.getDescription()).await().indefinitely());
+        rentalAndComment.setName(rental.onItem().transform(Rental::getName).await().indefinitely());
+        rentalAndComment.setDescription(rental.onItem().transform(Rental::getDescription).await().indefinitely());
         rentalAndComment.setComments(comments.onItem().transform(e -> e).await().indefinitely());
+        return rentalAndComment;
+    }
+
+    public RentalAndComment createRentalAndComment(RentalAndComment rentalAndComment, UriInfo uriInfo){
+        Rental rental = new Rental();
+        rental.setRentalId(rentalAndComment.getRentalId());
+        rental.setName(rentalAndComment.getName());
+        rental.setDescription(rentalAndComment.getDescription());
+        rentalProxy.createRental(rental,  uriInfo).await().indefinitely();
+
+        List<Comment> comments = rentalAndComment.getComments();
+        for (Comment comment : comments){
+            commentProxy.createComment(comment).await().indefinitely();
+        }
         return rentalAndComment;
     }
 
