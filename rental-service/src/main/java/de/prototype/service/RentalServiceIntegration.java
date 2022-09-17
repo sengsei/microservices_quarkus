@@ -61,4 +61,13 @@ public class RentalServiceIntegration {
         commentProxy.deleteCommentsByRentalId(rentalId).await().indefinitely();
     }
 
+    public RentalAndComment updateRentalAndCommentById(RentalAndComment rentalAndComment, int rentalId) {
+        Rental rental = new Rental();
+        rental.setRentalId(rentalId);
+        rental.setName(rentalAndComment.getName());
+        rental.setDescription(rentalAndComment.getDescription());
+        rentalProxy.updateRental(rental, rentalId).await().indefinitely();
+
+        return rentalAndComment;
+    }
 }

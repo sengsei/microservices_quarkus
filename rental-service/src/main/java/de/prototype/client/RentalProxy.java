@@ -31,4 +31,7 @@ public interface RentalProxy {
     @Path("/{id}")
     Uni<Response> deleteRentalByRentalId(@PathParam("id") int rentalId);
 
+    @PUT
+    @Path("/{id}")
+    Uni<Response> updateRental(Rental rental,@PathParam("id") int rentalId);
 }

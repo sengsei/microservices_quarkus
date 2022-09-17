@@ -43,8 +43,8 @@ public class RentalController {
 
     @PUT
     @Path("/{id}")
-    public Uni<Response> updateRental(@PathParam("id") String id, Rental rental) {
-        return rentalService.updateRental(id, rental);
+    public Uni<Response> updateRental(@PathParam("id") int rentalId, Rental rental) {
+        return rentalService.updateRental(rentalId, rental);
     }
 
     @DELETE

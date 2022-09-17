@@ -2,7 +2,7 @@ package de.prototype.service;
 
 import de.prototype.model.Rental;
 import io.smallrye.mutiny.Uni;
-import org.bson.types.ObjectId;
+
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Context;
@@ -34,16 +34,21 @@ public class RentalServiceImpl implements RentalService {
     }
 
     @Override
-    public Uni<Response> updateRental(String id, Rental rental) {
-        Uni<Rental> updatedRental = Rental.findById(new ObjectId(id));
+    public Uni<Response> updateRental(int rentalId, Rental rental) {
+
+        Uni<Rental> updatedRental = Rental.find("rentalId", rentalId).firstResult();
+
         return updatedRental.onItem().transform(
                 e -> {
+
                     e.setRentalId(rental.getRentalId());
                     e.setDescription(rental.getDescription());
                     e.setName(rental.getName());
                     return e;
                 }
         ).call(e -> e.persistOrUpdate()).replaceWith(Response.ok().build());
+
+
     }
 
     @Override

@@ -7,14 +7,13 @@ import de.prototype.model.Rental;
 import de.prototype.model.RentalAndComment;
 import de.prototype.service.RentalServiceIntegration;
 import io.smallrye.mutiny.Uni;
-import org.jboss.resteasy.reactive.ResponseStatus;
+
 
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
@@ -57,6 +56,12 @@ public class RentalServiceController {
     @Path("/{rentalId}")
     public void deleteRentalAndCommentById(@PathParam("rentalId") int rentalId){
         integration.deleteRentalAndCommentById(rentalId);
+    }
+
+    @PUT
+    @Path("/{rentalId}")
+    public RentalAndComment updateRentalAndComment(RentalAndComment rentalAndComment,@PathParam("rentalId") int rentalId){
+        return integration.updateRentalAndCommentById(rentalAndComment, rentalId);
     }
 
 
