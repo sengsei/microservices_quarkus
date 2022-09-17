@@ -9,9 +9,9 @@ import java.util.List;
 public interface RentalService {
 
     Uni<List<Rental>> getAllRentals();
-    Uni<List<Rental>> getRentalById(int rentalId);
+    Uni<Rental> getRentalById(int rentalId);
     Uni<Response> createRental(Rental rental, UriInfo uriInfo);
-    Uni<Response> updateRental(String id, Rental rental);
+    Uni<Response> updateRental(int rentalId, Rental rental);
     Uni<Response> deleteRentalByRentalId(int rentalId);
 
 
