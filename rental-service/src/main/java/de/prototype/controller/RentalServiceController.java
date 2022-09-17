@@ -53,6 +53,12 @@ public class RentalServiceController {
         return integration.createRentalAndComment(rentalAndComment, uriInfo);
     }
 
+    @DELETE
+    @Path("/{rentalId}")
+    public void deleteRentalAndCommentById(@PathParam("rentalId") int rentalId){
+        integration.deleteRentalAndCommentById(rentalId);
+    }
+
 
 
 

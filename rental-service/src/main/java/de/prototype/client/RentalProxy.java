@@ -27,4 +27,8 @@ public interface RentalProxy {
     @POST
     Uni<Response> createRental(Rental rental, UriInfo uriInfo);
 
+    @DELETE
+    @Path("/{id}")
+    Uni<Response> deleteRentalByRentalId(@PathParam("id") int rentalId);
+
 }

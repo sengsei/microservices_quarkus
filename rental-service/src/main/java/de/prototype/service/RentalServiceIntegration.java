@@ -56,4 +56,9 @@ public class RentalServiceIntegration {
         return rentalAndComment;
     }
 
+    public void deleteRentalAndCommentById(int rentalId){
+        rentalProxy.deleteRentalByRentalId(rentalId).await().indefinitely();
+        commentProxy.deleteCommentsByRentalId(rentalId).await().indefinitely();
+    }
+
 }

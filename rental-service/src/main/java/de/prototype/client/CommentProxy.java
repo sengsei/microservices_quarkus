@@ -24,4 +24,8 @@ public interface CommentProxy {
 
     @POST
     Uni<Response> createComment(Comment comment);
+
+    @DELETE
+    @Path("/{id}")
+    Uni<Response> deleteCommentsByRentalId(@PathParam("id") int rentalId);
 }
