@@ -6,29 +6,17 @@ services:
     mem_limit: 512m
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-
-
 
   comment:
     image: robotron1/quarkus_comment
     mem_limit: 512m
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-
-
-
   app:
     image: robotron1/quarkus_rental-service
     mem_limit: 512m
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-
 
   mongodb:
     image: mongo:5.0.9
