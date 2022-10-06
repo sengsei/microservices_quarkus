@@ -1,7 +1,6 @@
 package de.prototype.client;
 
 import de.prototype.model.Comment;
-import de.prototype.model.Rental;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
